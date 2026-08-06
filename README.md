@@ -1,0 +1,1 @@
+# HELBMaGo-JavaDesignPatterns
