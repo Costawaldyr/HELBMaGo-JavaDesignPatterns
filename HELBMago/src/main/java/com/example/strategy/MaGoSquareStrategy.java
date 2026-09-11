@@ -13,7 +13,21 @@ import com.example.utils.MyGlobals;
  * variation of all Square MaGos.
  */
 public class MaGoSquareStrategy implements MessageStrategy {
+    private static MaGoSquareStrategy instance = null;
     private static final String SQUARE = "Square";
+
+    private MaGoSquareStrategy() {}
+
+    public static MaGoSquareStrategy getInstance() {
+        if (instance == null) {
+            synchronized (MaGoSquareStrategy.class) {
+                if (instance == null) {
+                    instance = new MaGoSquareStrategy();
+                }
+            }
+        }
+        return instance;
+    }
 
     /**
      * Returns the message that gives the highest total score
