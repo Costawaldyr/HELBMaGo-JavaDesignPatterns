@@ -63,10 +63,10 @@ public class MainController {
         this.view = new MainView(primaryStage, population);
         this.messageReader = new MessageReader(FILE_NAME);
 
-        this.randomStrategy = new MaGoRandomStrategy();
-        this.circleStrategy = new MaGoCircleStrategy();
-        this.squareStrategy = new MaGoSquareStrategy();
-        this.anyStrategy = new MaGoAnyStrategy();
+        this.randomStrategy = MaGoRandomStrategy.getInstance();
+        this.circleStrategy = MaGoCircleStrategy.getInstance();
+        this.squareStrategy = MaGoSquareStrategy.getInstance();
+        this.anyStrategy = MaGoAnyStrategy.getInstance();
 
         population.attach(view);
 
