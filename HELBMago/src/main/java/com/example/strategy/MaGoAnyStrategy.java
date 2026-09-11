@@ -16,15 +16,27 @@ import com.example.utils.MyGlobals;
  */
 public class MaGoAnyStrategy implements MessageStrategy {
 
+    private static MaGoAnyStrategy instance = null;
     private static final int TWO_TYPES = 2;
     private final MaGoCircleStrategy circleStrategy;
     private final MaGoSquareStrategy squareStrategy;
     private Random rand;
 
-    public MaGoAnyStrategy() {
+    private MaGoAnyStrategy() {
         this.rand = new Random();
-        this.circleStrategy = new MaGoCircleStrategy();
-        this.squareStrategy = new MaGoSquareStrategy();
+        this.circleStrategy = MaGoCircleStrategy.getInstance();
+        this.squareStrategy = MaGoSquareStrategy.getInstance();
+    }
+
+    public static MaGoAnyStrategy getInstance() {
+        if (instance == null) {
+            synchronized(MaGoAnyStrategy.class) {
+                if (instance == null) {
+                    instance = new MaGoAnyStrategy();
+                }
+            }
+        }
+        return instance;
     }
 
     /**
