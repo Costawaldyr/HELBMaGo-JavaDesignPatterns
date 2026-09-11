@@ -13,10 +13,22 @@ import java.util.Random;
  */
 public class MaGoRandomStrategy implements MessageStrategy {
 
+    private static MaGoRandomStrategy instance = null;
     private Random rand;
 
-    public MaGoRandomStrategy() {
+    private MaGoRandomStrategy() {
         this.rand = new Random();
+    }
+
+    public static MaGoRandomStrategy getInstance() {
+        if (instance == null) {
+            synchronized (MaGoRandomStrategy.class) {
+                if (instance == null) {
+                    instance = new MaGoRandomStrategy();
+                }
+            }
+        }
+        return instance;
     }
 
     /**
