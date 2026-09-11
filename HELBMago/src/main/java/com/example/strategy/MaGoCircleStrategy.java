@@ -15,7 +15,21 @@ import com.example.utils.MyGlobals;
 public class MaGoCircleStrategy implements MessageStrategy {
 
     private static final String CIRCLE = "Circle";
+    private static MaGoCircleStrategy instance = null;
 
+    private MaGoCircleStrategy() { }
+
+    public static MaGoCircleStrategy getInstance() {
+        if (instance == null) {
+            synchronized (MaGoCircleStrategy.class) {
+                if (instance == null) {
+                    instance = new MaGoCircleStrategy();
+                }
+            }
+        }
+        return instance;
+    }
+    
     /**
      * Returns the message that gives the highest total score
      * for all Circle MaGos.
